@@ -1,0 +1,226 @@
+@import '/_content/Microsoft.FluentUI.AspNetCore.Components/css/reboot.css';
+
+/* CSS Variables for easy theming */
+:root {
+    --body-font: "Segoe UI Variable", "Segoe UI", sans-serif;
+    --base-font-size: 1rem;
+    --base-line-height: 1.5;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    /* Add more variables as needed */
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    margin: 0;
+}
+
+.main {
+    min-height: calc(100dvh - 96px);
+    color: var(--neutral-foreground-rest);
+}
+
+.content {
+    margin: 0 var(--spacing-md);
+}
+
+footer {
+    display: grid;
+    grid-template-columns: var(--spacing-md) auto auto var(--spacing-md);
+    background: var(--neutral-layer-4);
+    color: var(--neutral-foreground-rest);
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+    footer .link1 {
+        grid-column: 2;
+        justify-content: start;
+    }
+
+    footer .link2 {
+        grid-column: 3;
+        justify-self: end;
+    }
+
+    footer a {
+        color: var(--neutral-foreground-rest);
+        text-decoration: none;
+    }
+
+        footer a:focus-visible {
+            outline: 2px solid var(--accent-fill-rest);
+            outline-offset: 3px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+.alert {
+    border: 1px dashed var(--accent-fill-rest);
+    padding: var(--spacing-xs);
+}
+
+/* Consolidated Error UI styles */
+#blazor-error-ui {
+    background: #ffbaba;
+    color: #222;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+    #blazor-error-ui .dismiss {
+        margin-left: var(--spacing-md);
+        cursor: pointer;
+        position: absolute;
+        right: var(--spacing-md);
+        top: var(--spacing-sm);
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,...) no-repeat 1rem/1.8rem, #b32121;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::before {
+        content: "An error has occurred. ";
+    }
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto var(--spacing-md) auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
+    }
+
+code {
+    color: #c02d76;
+}
+
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--neutral-layer-4);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--neutral-stroke-layer-rest);
+}
+
+    .layout-header h3 {
+        margin: 0;
+    }
+
+.header-right fluent-button {
+    margin-left: var(--spacing-sm);
+}
+
+/* Main content */
+.layout-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Navbar */
+.layout-nav {
+    width: 200px;
+    background: var(--neutral-layer-2);
+    border-right: 1px solid var(--neutral-stroke-layer-rest);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.nav-btn {
+    width: 100%;
+}
+
+/* Body */
+.layout-body {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    background: var(--neutral-layer-1);
+}
+
+/* Footer */
+.layout-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--neutral-layer-4);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--neutral-stroke-layer-rest);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .layout-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--neutral-stroke-layer-rest);
+        flex-direction: row;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+    }
+    .layout-main {
+        flex-direction: column;
+    }
+    .layout-body {
+        padding: var(--spacing-xs);
+    }
+    .layout-header, .layout-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--spacing-xs);
+    }
+}

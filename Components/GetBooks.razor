@@ -1,0 +1,45 @@
+﻿@page "/getbooks"
+@using BookInfo.Frontend.Models
+@inject BookService BookService
+
+@rendermode InteractiveServer
+
+<h3>📚 Book List</h3>
+
+@if (books is null)
+{
+    <p>Loading books...</p>
+}
+else if (!books.Any())
+{
+    <p>No books found.</p>
+}
+else
+{
+    <FluentCard style="max-height:600px; overflow-y:auto; margin-top:1rem;">
+        <FluentDataGrid TGridItem="Book"
+                        Items="@books"
+                        GridLines="DataGridGridLines.Both"
+                        Size="DataGridSize.Medium"
+                        Class="fluent-light"
+                        AutoFit="true">
+            <PropertyColumn Property="@(b => b.Id)" Title="ID" />
+            <PropertyColumn Property="@(b => b.Title)" Title="Title" Sortable="true" />
+            <PropertyColumn Property="@(b => b.Author)" Title="Author" Sortable="true" />
+            <PropertyColumn Property="@(b => b.Genre)" Title="Genre" Sortable="true" />
+            <PropertyColumn Property="@(b => b.YearPublished)" Title="Year Published" Sortable="true" />
+        </FluentDataGrid>
+    </FluentCard>
+}
+
+@code {
+    private IQueryable<Book>? books;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InNoYW1zIiwibmJmIjoxNzU3NzY1ODAxLCJleHAiOjE3NTc3Njk0MDEsImlhdCI6MTc1Nzc2NTgwMX0.BWl0lhGEOTh5KYLORPgMAUCsEAkWwDlYtcdJ4r8UGY0"; // 👈 Replace with actual token retrieval
+
+        var result = await BookService.GetBooksAsync(token);
+        books = result.AsQueryable();
+    }
+}
