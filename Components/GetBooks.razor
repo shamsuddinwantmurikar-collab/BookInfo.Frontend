@@ -37,7 +37,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InNoYW1zIiwibmJmIjoxNzU3NzY1ODAxLCJleHAiOjE3NTc3Njk0MDEsImlhdCI6MTc1Nzc2NTgwMX0.BWl0lhGEOTh5KYLORPgMAUCsEAkWwDlYtcdJ4r8UGY0"; // 👈 Replace with actual token retrieval
+        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InNoYW1zIiwibmJmIjoxNzU3NzY5OTc4LCJleHAiOjE3NTgyMDE5NzgsImlhdCI6MTc1Nzc2OTk3OH0.XLxG4cpFqFnPt63RCm3jhrzzzo5YhRgCJ2WjNGvRCJE"; // 👈 Replace with actual token retrieval
 
         var result = await BookService.GetBooksAsync(token);
         books = result.AsQueryable();
